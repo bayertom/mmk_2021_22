@@ -1,4 +1,5 @@
-function [X,Y] = WGStoJTSK(phi,lam)
+%function [X,Y] = WGStoJTSK(phi,lam)
+function [phi_B, lam_B] = WGStoJTSK(phi,lam)
 
 % Degrees to Radians
 phir = phi*pi/180;
@@ -29,6 +30,43 @@ m = 1 - 3.5623e-6
 
 % Rotation matrix
 R = [1 w_z -w_y; -w_z 1 w_x; w_y -w_x 1];
+
+% WGS coordinates matrix
+XYZ_WGS = [X_WGS; Y_WGS; Z_WGS];
+
+% Shift matrix
+D =  [d_x; d_y; d_z];
+
+% Helmert transformation
+XYZ_B = m * R * XYZ_WGS + D;
+X_B = XYZ_B(1, 1);
+Y_B = XYZ_B(2, 1);
+Z_B = XYZ_B(3, 1);
+
+% Bessels ellipsoid
+a_B = 6377397.155;
+b_B = 6356078.963;
+
+% Excentricity of Bessels ellipsoid
+e2_B = (a_B*a_B - b_B*b_B)/(a_B*a_B);
+
+% Longitude - Bessel ellipsoid
+lamr_B = atan2(Y_B,X_B);
+lam_B = lamr_B*180/pi;
+
+% Latitude - Bessel ellipsoid
+phir_B = atan2(Z_B, (1-e2_B)*sqrt(X_B*X_B+Y_B*Y_B));
+phi_B = phir_B*180/pi;
+
+
+
+
+
+
+
+
+
+
 
 
 

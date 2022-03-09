@@ -1,6 +1,6 @@
 function [s, d] = uv_to_sd(u, v, uk, vk)
 
-    % Convert degrees to radians
+    %Convert degrees to radians
     ur = u*pi/180;
     vr = v*pi/180;
     ukr = uk*pi/180;
@@ -17,7 +17,7 @@ function [s, d] = uv_to_sd(u, v, uk, vk)
     dnom = cos(ur).*sin(ukr).*cos(dv)-sin(ur).*cos(ukr);
 
     d = atan2(num,dnom)*180/pi;
-    %d = 360 - d;
+    d = -d
     
 end
 

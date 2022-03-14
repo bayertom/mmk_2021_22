@@ -1,5 +1,6 @@
 clc
 clear
+hold on
 
 proj  = @gnomonic
 

@@ -11,7 +11,6 @@ function [] = drawContinents(file, R, uk, vk, u0, smin, proj)
     idx = find(s < smin);
     s(idx) = []; d(idx) = [];
 
-
     % Project
     [x, y] = proj(R, s, d, u0);
     

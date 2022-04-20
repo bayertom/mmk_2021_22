@@ -106,7 +106,6 @@ mr = c*ro/(R_g*cos(sr));
 dro = (ro-ro_0)/100000;
 mrs = 0.9999 + 0.00012282 * dro^2 - 0.00000315*dro^3 + 0.00000018*dro^4;
 
-
 % Distortion
 nu_0 = (mr_0 - 1)*1000;
 nu = (mr - 1)*1000;
@@ -117,12 +116,3 @@ ksi = asin((cos(ukr) * sin(dr))/ cos(u));
 conr = eps - ksi;
 con = conr * 180/pi;
 con2 = 0.008257 * Y/1000 + 2.373 * Y/X;
-
-
-
-
-
-
-
-
-

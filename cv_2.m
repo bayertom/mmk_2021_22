@@ -3,14 +3,8 @@ clear
 format long g
 
 %Input points
-<<<<<<< HEAD
 fi_1 = 48.11;
 lam_1 = 22.28;
-=======
-fi_1 = 50;
-lam_1 = 15;
->>>>>>> 472e163608e3712d3c7640d2ec6f74b132382ab3
-
 fi_2 = 50.1;
 lam_2 = 15.2;
 
@@ -18,7 +12,6 @@ lam_2 = 15.2;
 [x_1, y_1] = WGStoJTSK(fi_1, lam_1);
 [x_2, y_2] = WGStoJTSK(fi_2, lam_2);
 d1 = sqrt((x_2-x_1)^2+(y_2-y_1)^2);
-<<<<<<< HEAD
 sigma1 = atan2(y_2 - y_1, x_2 - x_1)*180/pi;
 
 %Bessel to jtsk
@@ -32,12 +25,3 @@ sigma2 = atan2(y_4 - y_3, x_4 - x_3)*180/pi;
 [x_6, y_6] = SpheretoJTSK(fi_2, lam_2);
 d3 = sqrt((x_6-x_5)^2+(y_6-y_5)^2);
 sigma3 = atan2(y_6 - y_5, x_6 - x_5)*180/pi;
-
-=======
-
-%Bessel to jtsk
-%[x_3, y_3] = bess_to_jtsk(fi_1, lam_1);
->>>>>>> 472e163608e3712d3c7640d2ec6f74b132382ab3
-%[x_4, y_4] = bess_to_jtsk(fi_2, lam_2);
-%d2 = sqrt((x_4-x_3)^2+(y_4-y_3)^2);
-

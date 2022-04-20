@@ -1,5 +1,5 @@
-%function [X,Y] = WGStoJTSK(phi,lam)
-function [phi_B, lam_B] = WGStoJTSK(phi,lam)
+function [X,Y] = WGStoJTSK(phi,lam)
+%function [phi_B, lam_B] = WGStoJTSK(phi,lam)
 
 % Degrees to Radians
 phir = phi*pi/180;
@@ -58,6 +58,27 @@ lam_B = lamr_B*180/pi;
 phir_B = atan2(Z_B, (1-e2_B)*sqrt(X_B*X_B+Y_B*Y_B));
 phi_B = phir_B*180/pi;
 
+% (lat, lon)_Bess -> (u, v)_sphere
+lam_F_deg = lam_B + 17 + 2/3;
+lamr_F = lam_F_deg * pi/180;
+phi_0 = 49.5 * pi/180;
+
+%Constant values
+alpha = sqrt(1 + e2_B * (cos(phi_0))^4/(1 - e2_B));
+u_0=asin(sin(phi_0)/alpha);
+k_c=(tan(phi_0/2+pi/4)^alpha*((1-sqrt(e2_B)*sin(phi_0))/...
+    (1+sqrt(e2_B)*sin(phi_0)))^(alpha*sqrt(e2_B)/2));
+k_j=tan(u_0/2+pi/4);
+k=k_c/k_j;
+R_g = (a_B*sqrt(1-e2_B))/(1-e2_B*(sin(phi_0))^2);
+
+%Gaussian conformal projection
+u_r =((tan(phir_B/2 + pi/4)*((1-sqrt(e2_B)*sin(phir_B))/...
+    (1+sqrt(e2_B)*sin(phir_B)))^(sqrt(e2_B)/2))^alpha)/k;
+u = 2*atan(u_r)-pi/2;
+u_deg = u * 180/pi;
+v = alpha*lamr_F;
+v_deg = v * 180/pi;
 
 
 

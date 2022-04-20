@@ -1,5 +1,4 @@
 function [X,Y] = WGStoJTSK(phi,lam)
-%function [phi_B, lam_B] = WGStoJTSK(phi,lam)
 
 % Degrees to Radians
 phir = phi*pi/180;
@@ -80,8 +79,44 @@ u_deg = u * 180/pi;
 v = alpha*lamr_F;
 v_deg = v * 180/pi;
 
+% Conversion to oblique aspect
+uk = 59 + 42/60 + 42.6969/3600;
+vk = 42 + 31/60 + 31.41725/3600;
+ukr = uk * pi/180;
+vkr = vk * pi/180;
+
+[s, d] = uv_to_sd (u_deg, v_deg, uk, vk);
+sr = s * pi/180;
+dr = d * pi/180;
+
+% Lambert conformal conic projection
+s_0 = 78.50 * pi/180;
+c = sin(s_0);
+ro_0 = 0.9999 * R_g * cot(s_0);
+ro = ro_0 * ((tan(s_0/2+pi/4))/(tan(sr/2+pi/4)))^c;
+eps = c*dr;
+
+% Polar to ortogonal
+X = ro*cos(eps);
+Y = ro*sin(eps);
+
+% Local linear scale
+mr_0 = c*ro_0/(R_g*cos(s_0));
+mr = c*ro/(R_g*cos(sr));
+dro = (ro-ro_0)/100000;
+mrs = 0.9999 + 0.00012282 * dro^2 - 0.00000315*dro^3 + 0.00000018*dro^4;
 
 
+% Distortion
+nu_0 = (mr_0 - 1)*1000;
+nu = (mr - 1)*1000;
+nus = (mrs - 1)*1000;
+
+%Convergence
+ksi = asin((cos(ukr) * sin(dr))/ cos(u));
+conr = eps - ksi;
+con = conr * 180/pi;
+con2 = 0.008257 * Y/1000 + 2.373 * Y/X;
 
 
 

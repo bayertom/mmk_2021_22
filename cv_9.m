@@ -1,8 +1,11 @@
 clc 
 clear
 format long g
+axis equal
 
+%Lambert conformal conic projection
 R = 1;
+
 %Geographic pole
 uk = 45.9977;
 vk = 91.2461;
@@ -50,6 +53,10 @@ mr0 = c*ro0/(R*cos(s_0r));
 nu_1 = mr1 - 1;
 nu_2 = mr2 - 1;
 nu_0 = 1 - mr0;
+
+
+
+
 
 
 

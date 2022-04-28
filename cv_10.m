@@ -9,7 +9,7 @@ R = 1;
 vk = 84.2326;
 uk = 28.2016;
 
-% Point
+% Point on the boundary circle
 v1 = 81.736;
 u1 = 31.6378;
 
@@ -20,7 +20,7 @@ u1 = 31.6378;
 psi = 90 - s;
 psi_r = psi * pi/180;
 
-%Multiplication constant
+%Multiplicative constant
 mju = (2*cos(psi_r/2)*cos(psi_r/2))/(1+cos(psi_r/2)*cos(psi_r/2));
 
 %True parallel
@@ -29,7 +29,7 @@ psi_0 = psi_0r * 180/pi;
 s_0r = pi/2 - psi_0r;
 s_0 = s_0r * 180/pi;
 
-%Local linear scales, northern/soutrhern parallels
+%Local linear scales, northern/mid/southern parallel
 mr1 = mju/((cos(0))^2);
 mr0 = mju/((cos(psi_0r/2))^2);
 mr2 = mju/((cos(psi_r/2))^2);

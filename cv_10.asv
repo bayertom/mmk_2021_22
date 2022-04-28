@@ -20,7 +20,7 @@ u1 = 31.6378;
 psi = 90 - s;
 psi_r = psi * pi/180;
 
-%Multiplication constant
+%Multiplicative constant
 mju = (2*cos(psi_r/2)*cos(psi_r/2))/(1+cos(psi_r/2)*cos(psi_r/2));
 
 %True parallel
@@ -29,7 +29,7 @@ psi_0 = psi_0r * 180/pi;
 s_0r = pi/2 - psi_0r;
 s_0 = s_0r * 180/pi;
 
-%Local linear scales, northern/soutrhern parallels
+%Local linear scales, northern/mid/southern parallel
 mr1 = mju/((cos(0))^2);
 mr0 = mju/((cos(psi_0r/2))^2);
 mr2 = mju/((cos(psi_r/2))^2);
@@ -40,16 +40,16 @@ nu_2 = mr2 - 1;
 nu_0 = 1 - mr0;
 
 %Create graticule
-umin = 25;
-umax = 32;
+umin = 26;
+umax = 31;
 vmin = 80;
-vmax = 90;
+vmax = 89;
 Du = 1;
 Dv = 1;
 du = Du/10;
 dv = Dv/10;
 proj = @stereographic;
-[XM,YM, XP,YP] = graticule(R, 0, uk, vk, proj, umin, umax, vmin, vmax, Du, Dv, du, dv);
+[XM,YM, XP,YP] = graticule(R, s_0, uk, vk, proj, umin, umax, vmin, vmax, Du, Dv, du, dv);
 
 hold on
 plot(XM', YM', 'k');

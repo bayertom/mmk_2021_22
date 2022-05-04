@@ -17,7 +17,7 @@ function [s, d] = uv_to_sd(u, v, uk, vk)
     dnom = cos(ur).*sin(ukr).*cos(dv)-sin(ur).*cos(ukr);
 
     d = atan2(num,dnom)*180/pi;
-    %d = -d;
+    d = -d;
     
 end
 

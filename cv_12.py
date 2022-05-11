@@ -12,7 +12,7 @@ def loadPoints(file_text):
     return array(uv)
 
 def samplePoints(umin, umax, vmin, vmax, Du, Dv):
-    #Sample grid points
+    #Sample graticule points
     uv = []
     with open("points.txt", "w") as file:
         for u in range(umin,umax,Du):
@@ -43,7 +43,7 @@ def writePoints(file_text, u, v, x, y, a = [], b = []):
             #Create line
             line = str(u[i]) + '\t' + str(v[i]) + '\t' + str(x[i]) + '\t' + str(y[i]) + '\t'
 
-            #Tissote indicatrix parameters computed
+            #Tissote indicatrix computed
             if len(a) > 0:
                 line += str(a[i]) + '\t' + str(b[i])
 

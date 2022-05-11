@@ -27,17 +27,17 @@ b = P(:, 6);
 %Create W matrix
 W = cos(u*pi/180);
 
-%Airy + complex local
+%Airy + complex, local
 h2a = ((a-1).^2+(b-1).^2)/2;
 h2c = (abs(a-1) + abs(b-1))/2 + a./b - 1;
 
-%Airy global, non-weighted
+%Airy, global, non-weighted
 H2A = mean(h2a(:));
 H2C = mean(h2c(:));
 HA = sqrt(H2A);
 HC = sqrt(H2C);
 
-%Airy global, weighted
+%Airy, global, weighted
 H2AN = W.*h2a;
 H2AW = sum(H2AN(:))/sum(W(:));
 HAW = sqrt(H2AW);
@@ -63,15 +63,15 @@ yeu = EU(:, 4);
 
 %Draw meridians
 hold on
-nm = length(umin:du:umax)
+nm = length(umin:du:umax);
 for i = 1:nm:length(xm)
-    plot(xm(i:i+nm - 1), ym(i:i+nm - 1), 'k');
+    plot(xm(i:i+nm-1), ym(i:i+nm-1), 'k');
 end
 
 %Draw parallels
-np = length(vmin:dv:vmax)
+np = length(vmin:dv:vmax);
 for i = 1:np:length(xp)
-    plot(xp(i:i+np - 1), yp(i:i+np - 1), 'k');
+    plot(xp(i:i+np-1), yp(i:i+np-1), 'k');
 end
     
 %Draw continents

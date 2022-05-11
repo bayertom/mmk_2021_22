@@ -16,7 +16,7 @@ du = Du/10;
 
 R = 6380;
 
-%Load data
+%Load graticule points
 P = load("points_sinu.txt");
 u = P(:, 1);
 x = P(:, 3);
@@ -74,7 +74,7 @@ for i = 1:np:length(xp)
     plot(xp(i:i+np - 1), yp(i:i+np - 1), 'k');
 end
     
-% Draw continents
+%Draw continents
 plot(xeu, yeu, 'b');
 
 %Map scale

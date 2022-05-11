@@ -45,11 +45,10 @@ def writePoints(file_text, u, v, x, y, a = [], b = []):
 
             #Tissote indicatrix parameters computed
             if len(a) > 0:
-                line += str(a[i]) + '\t' + str(b[i]) + '\n'
+                line += str(a[i]) + '\t' + str(b[i])
 
             #Terminate line
-            else:
-                line += '\n'
+            line += '\n'
 
             #Write line
             file.write(line)

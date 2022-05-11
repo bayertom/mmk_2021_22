@@ -1,5 +1,6 @@
 clc
 clear
+
 format long g
 axis equal
 
@@ -60,15 +61,14 @@ EU = load('europe_sinu.txt');
 xeu = EU(:, 3);
 yeu = EU(:, 4);
 
-% Draw meridians
+%Draw meridians
 hold on
 nm = length(umin:du:umax)
 for i = 1:nm:length(xm)
     plot(xm(i:i+nm - 1), ym(i:i+nm - 1), 'k');
 end
 
-% Draw parallels
-hold on
+%Draw parallels
 np = length(vmin:dv:vmax)
 for i = 1:np:length(xp)
     plot(xp(i:i+np - 1), yp(i:i+np - 1), 'k');
@@ -81,13 +81,12 @@ plot(xeu, yeu, 'b');
 M = 100000000;
 Muv = M./a;
 
-%Convert x,y to meshgrid
+%Convert [x,y,M] to meshgrid
 xg = linspace(min(x), max(x), 100);
 yg = linspace(min(y), max(y), 100);
 [X,Y] = meshgrid(xg, yg);
 Z = griddata(x, y, Muv, X, Y, 'cubic');
 
-%Contour lines
+%Draw contour lines
 [C, h] = contour(X, Y, Z, [20000000:10000000:300000000], 'LineColor', 'r', 'LineWidth' ,2);
 clabel(C, h, 'Color', 'r', 'labelspacing', 1000)
-
